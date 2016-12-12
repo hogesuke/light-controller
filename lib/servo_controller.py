@@ -12,7 +12,7 @@ class ServoController:
         wiringpi.pwmSetClock(375)
 
     def move(self, degree):
-        if -90 < degree < 90:
+        if not (-90 < degree < 90):
             raise RuntimeError('可動域を超えた度数が指定されています。')
 
         move_deg = int(81 + 41 / 90 * degree)
