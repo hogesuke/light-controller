@@ -1,6 +1,7 @@
 import tornado.ioloop
 import tornado.web
 import tornado.websocket
+from time import sleep
 from servo_controller import ServoController
 
 cl = []
@@ -31,9 +32,13 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
 
     def __power_on(self):
         sc.move(45)
+        sleep(1)
+        sc.move(0)
 
     def __power_off(self):
         sc.move(-45)
+        sleep(1)
+        sc.move(0)
 
 application = tornado.web.Application([
     (r"/light", WebSocketHandler),
