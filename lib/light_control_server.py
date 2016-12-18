@@ -31,14 +31,14 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
             cl.remove(self)
 
     def __power_on(self):
-        sc.move(-7)
-        sleep(1)
-        sc.move(5)
+        sc.move(-8)
+        sleep(0.5)
+        sc.move(0)
 
     def __power_off(self):
-        sc.move(15)
-        sleep(1)
-        sc.move(5)
+        sc.move(18)
+        sleep(0.5)
+        sc.move(9)
 
 application = tornado.web.Application([
     (r"/light", WebSocketHandler),
