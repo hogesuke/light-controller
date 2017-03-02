@@ -14,7 +14,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
     def open(self):
         if self not in cl:
             cl.append(self)
-            self.write_message(self.status)
+            self.write_message(WebSocketHandler.status)
 
     def on_message(self, message):
         if message not in ['power_on', 'power_off']:
@@ -29,7 +29,7 @@ class WebSocketHandler(tornado.websocket.WebSocketHandler):
         for client in cl:
             client.write_message(message)
 
-        self.status = message
+        WebSocketHandler.status = message
 
     def on_close(self):
         if self in cl:
